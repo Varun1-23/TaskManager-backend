@@ -85,7 +85,7 @@ res.status(500).json({
 
 // server start
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 7000
 app.listen(PORT, ()=>{
     console.log(`Server Running on port ${PORT}`);
     console.log(`Base URL: http://localhost:${PORT}/api/v1`);
