@@ -16,8 +16,8 @@ export const adminLogin = asyncHandler(async (req, res) => {
     const adminEmail = process.env.ADMIN_EMAIL
     const adminPassword = process.env.ADMIN_PASSWORD
 
-    console.log("ADMIN ENV", process.env.ADMIN_EMAIL, process.env.ADMIN_PASSWORD);
-    console.log("REQUEST BODY", email, password);
+    // console.log("ADMIN ENV", process.env.ADMIN_EMAIL, process.env.ADMIN_PASSWORD);
+    // console.log("REQUEST BODY", email, password);
     
     if(email !== adminEmail || password !== adminPassword){
         throw new ApiError(401, 'Invalid email or password')
@@ -31,8 +31,9 @@ export const adminLogin = asyncHandler(async (req, res) => {
 res.clearCookie('token');
 res.cookie('adminToken', token , {
     httpOnly: true,
+    secure: true,
+    sameSite: 'None',
     maxAge: 24 * 60 * 60 * 1000,
-    secure: process.env.NODE_ENV === 'production',
 })
 
 console.log("📤 Sending token as cookie: adminToken");
