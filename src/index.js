@@ -18,7 +18,7 @@ const app = express()
 // middleware pipeline
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://taskmanager-frontend-livid.vercel.app/' ],
+    origin: ['http://localhost:5173', 'https://taskmanager-frontend-livid.vercel.app' ],
     credentials: true
 }))
 
