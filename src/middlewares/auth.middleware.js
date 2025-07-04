@@ -4,9 +4,11 @@ import { asyncHandler } from "../utils/asyncHandler.js"
 
 export const authMiddleware = asyncHandler (async (req , res , next) => {
     try {
+        console.log('🛡️ Checking for admin token');
         const token = req.cookies?.token || req.cookies?.adminToken
-
+        console.log('🔑 Token:', token);
         if(!token){
+            console.log('🚫 No token, rejecting request');
             throw new ApiError(401 , "Unauthorized: No token provided")
         }
 

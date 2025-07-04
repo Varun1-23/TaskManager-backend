@@ -41,6 +41,13 @@ const connectDB = async () => {
 }
 connectDB()
 
+app.use((req, res, next) => {
+  console.log(`🔍 ${req.method} ${req.originalUrl}`);
+  console.log('🔐 Cookies:', req.cookies);
+  console.log('📂 Headers:', req.headers);
+  next();
+});
+
 // routes
 
 app.use('/api/v1/auth' , authRoutes)
