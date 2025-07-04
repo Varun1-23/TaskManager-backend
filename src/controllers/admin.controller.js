@@ -24,7 +24,8 @@ export const adminLogin = asyncHandler(async (req, res) => {
     }
 
     const token = jwt.sign({id: 'admin_id', email: adminEmail, role: 'admin'}, process.env.JWT_SECRET, {expiresIn: '1d'})
-    //   console.log("Admin logged in, JWT created");
+    console.log("Admin logged in, JWT created");
+    console.log("✅ Token generated for admin:", token);
 
 
 res.clearCookie('token');
@@ -33,6 +34,8 @@ res.cookie('adminToken', token , {
     maxAge: 24 * 60 * 60 * 1000,
     secure: process.env.NODE_ENV === 'production',
 })
+
+console.log("📤 Sending token as cookie: adminToken");
 
 return res
 .status(200)
